@@ -12,9 +12,45 @@ class CarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Car::all();
+        if(!$request->input('take') && !$request->input('skip')){
+            return Car::all();
+        }else{
+            $cars = Car::all();
+        }
+
+        if($request->input('skip')){
+            $cars = $this->skip($request->input('skip'), $cars);
+        }
+        if($request->input('take')){
+            $cars = $this->take($request->input('take'), $cars);
+        }
+
+
+        return $cars;
+    }
+
+    public function take($number, $cars)
+    {
+        $newCars = [];
+        for($i = 0; $i < $number; $i++){
+            array_push($newCars, $cars[$i]);
+        }
+
+        return $newCars;
+    }
+
+    public function skip($number, $cars)
+    {
+
+        $newCars = [];
+        for($i = $number-1; $i < $cars->count(); $i++){
+            array_push($newCars, $cars[$i]);
+        }
+
+
+        return $newCars;
     }
 
     /**
