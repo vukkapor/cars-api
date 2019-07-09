@@ -39,6 +39,7 @@ class CarController extends Controller
 
         $this->validate(request(), Car::STORE_RULES);
 
+
         $car->brand = $request->input('brand');
         $car->model = $request->input('model');
         $car->year = $request->input('year');
@@ -86,11 +87,15 @@ class CarController extends Controller
         $car = Car::findOrFail($id);
 
         $this->validate(request(), Car::STORE_RULES);
+        if(!$car->maxSpeed){
+            $car->maxSpeed = $request->input('maxSpeed');
+        }else{
+            $car->maxSpeed = 20;
+        }
 
         $car->brand = $request->input('brand');
         $car->model = $request->input('model');
         $car->year = $request->input('year');
-        $car->maxSpeed = $request->input('maxSpeed');
         $car->isAutomatic = $request->input('isAutomatic');
         $car->engine = $request->input('engine');
         $car->numberOfDoors = $request->input('numberOfDoors');

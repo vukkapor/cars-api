@@ -9,12 +9,12 @@ class Car extends Model
     protected $guarded = ['id'];
 
     const STORE_RULES = [
-        'brand' => 'required | string',
-        'model' => 'required | string',
+        'brand' => 'required | string | min:2',
+        'model' => 'required | string | min:2',
         'year' => 'required|date',
-        'maxSpeed' => 'required|integer|between:1,500',
+        'maxSpeed' => 'integer|between:20,300',
         'isAutomatic' => 'required|boolean',
         'engine' => 'required | string',
-        'numberOfDoors' => 'required | integer | between:1,8'
+        'numberOfDoors' => 'required | integer | between:2,5'
     ];
 }
