@@ -11,7 +11,7 @@ class Car extends Model
     const STORE_RULES = [
         'brand' => 'required | string | min:2',
         'model' => 'required | string | min:2',
-        'year' => 'required|date',
+        'year' => 'required | integer',
         'maxSpeed' => 'integer|between:20,300',
         'isAutomatic' => 'required|boolean',
         'engine' => 'required | string',

@@ -13,4 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('api')->resource('cars', 'CarController');
+
+
+//LOgin JWT
+
+Route::post('/login', 'Auth\LoginController@authenticate');
+
+Route::middleware('jwt')->resource('cars', 'CarController');
